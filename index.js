@@ -1,10 +1,12 @@
-const chalk = require('chalk');
-console.log('vamos começar !!')
+const chalk = require('chalk')
+const fs =require('fs') 
+const caminho = './arquivo/text1.md'
 
-const paragrafo = "Texto retorna por uma função"
-
-function texto(string){
-    chalk
-    return string
+function PegaArquivo(caminho){
+    let encode = 'utf-8'
+    fs.readFile(caminho,encode,(_,Dados)=>{
+        console.log(chalk.green(Dados))
+    })
+ 
 }
-console.log(texto(paragrafo))
+PegaArquivo(caminho)
