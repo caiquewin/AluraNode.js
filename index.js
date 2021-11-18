@@ -1,6 +1,6 @@
 const chalk = require('chalk')
 const fs =require('fs') 
-const caminho = './arquivo/'
+const caminho = './arquivo/text1.md'
 
 function TratarErro(erro){
     if(erro.code==='EISDIR'){
@@ -12,15 +12,25 @@ function TratarErro(erro){
  
     }
 }
-
-function PegaArquivo(caminhoArquivo){
-    let encode = 'utf-8'
-    fs.promises.readFile(caminho,encode).then((Dados)=>{
-        console.log('texto',chalk.green(Dados))})
-        .catch((error)=>{
-            TratarErro(error)
-        })
+async function PegaArquivo(caminho){
+    try {
+        let encode = 'utf-8'
+        const texto = await fs.promises.readFile(caminho,encode)
+        console.log(chalk.green(texto))
+        
+    } catch (error) {
+        TratarErro(error)
+    }
 }
+
+// function PegaArquivo(caminhoArquivo){
+//     let encode = 'utf-8'
+//     fs.promises.readFile(caminho,encode).then((Dados)=>{
+//         console.log('texto',chalk.green(Dados))})
+//         .catch((error)=>{
+//             TratarErro(error)
+//         })
+// }
 
 // function PegaArquivo(caminho){
 //     let encode = 'utf-8'
