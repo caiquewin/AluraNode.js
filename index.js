@@ -9,17 +9,27 @@ function TratarErro(erro){
     }else{
         throw new Error(chalk.red('ocorreu um erro na leitura, o caminho do arquivo pode estar errado'))
 
+ 
     }
 }
 
-function PegaArquivo(caminho){
+function PegaArquivo(caminhoArquivo){
     let encode = 'utf-8'
-    fs.readFile(caminho,encode,(erro,Dados)=>{
-        if(erro){
-            TratarErro(erro)
-        }
-        console.log(chalk.green(Dados))
-    })
- 
+    fs.promises.readFile(caminho,encode).then((Dados)=>{
+        console.log('texto',chalk.green(Dados))})
+        .catch((error)=>{
+            TratarErro(error)
+        })
 }
+
+// function PegaArquivo(caminho){
+//     let encode = 'utf-8'
+//     fs.readFile(caminho,encode,(erro,Dados)=>{
+//         if(erro){
+//             TratarErro(erro)
+//         }
+//         console.log(chalk.green(Dados))
+//     })
+// }
+
 PegaArquivo(caminho)
